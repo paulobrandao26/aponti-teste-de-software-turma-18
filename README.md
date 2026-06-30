@@ -6,7 +6,7 @@ organizados em trilhas de aprendizagem.
 - Construir um portfólio profissional
 ---
 # Trilhas
-| Módulo | Conteúdo |
+|**Módulo** | **Conteúdo** |
 |---------|----------|
 | 01 | Git e GitHub |
 | 02 | Lógica básica de sistemas |
