@@ -1,10 +1,10 @@
-#### Atividade Avaliativa
+# Atividade Avaliativa
 
 
-### Produzir um texto curto que responda?
+## Produzir um texto curto que responda?
 
 
-## 1 - O que é teste de Software? 
+### 1 - O que é teste de Software? 
 
 
 
@@ -14,7 +14,7 @@ R = É o processo de verificar e validar se o software funciona conforme o esper
 
 
 
-## 2  - Por que  testar é importante para  o negócio? 
+### 2  - Por que  testar é importante para  o negócio? 
 
 
 
@@ -22,7 +22,7 @@ R = porque evita de que suas ideias dentro do digital não saiam com algum defei
 
 
 
-## 3 - O que caracteriza um software com qualidade? 
+### 3 - O que caracteriza um software com qualidade? 
 
 
 
@@ -30,7 +30,7 @@ R = um software que entrega tudo que foi pedido no seu projeto inicial, desde a 
 
 
 
-## 4 - qual é p papel do QA em um time moderno? 
+### 4 - qual é p papel do QA em um time moderno? 
 
 
 
