@@ -17,63 +17,63 @@ organizados em trilhas de aprendizagem.
 | 07 | 🚀 *Qualidade de software e integração contínua* |
 ---
 
-Comandos Git
+##Comandos Git
 
 bash# Verificar status do repositório
-git status
+*git status*
 
 # Adicionar arquivos ao staging
-git add .
+*git add .*
 
 # Criar um commit
-git commit -m "feat: adiciona exercícios da trilha 01"
+*git commit -m "feat: adiciona exercícios da trilha 01"*
 
 # Enviar para o repositório remoto
-git push origin main
+*git push origin main*
 
 # Atualizar repositório local
-git pull origin main
+*git pull origin main*
 
 # Ver histórico de commits
-git log --oneline
+*git log --oneline*
 
 Comandos do Terminal
 
 bash# Criar uma pasta
-mkdir nome-da-pasta
+*mkdir nome-da-pasta*
 
 # Criar um arquivo
-touch nome-do-arquivo.md
+*touch nome-do-arquivo.md*
 
 # Listar arquivos (incluindo ocultos)
-ls -la
+*ls -la*
 
 # Navegar entre pastas
-cd nome-da-pasta
+*cd nome-da-pasta*
 
 # Voltar uma pasta
-cd ..
+*cd ..*
 
 # Ver conteúdo de um arquivo
-cat README.md
+*cat README.md*
 
 Código em Python
 
 python# Exemplo de script de automação simples
 def verificar_status(teste: str, passou: bool) -> str:
-    if passou:
+    *if passou:
         return f"✅ PASSOU: {teste}"
     else:
-        return f"❌ FALHOU: {teste}"
+        return f"❌ FALHOU: {teste}"*
 
 testes = [
-    ("Login com credenciais válidas", True),
+*    ("Login com credenciais válidas", True),
     ("Login com senha errada", True),
-    ("Cadastro com e-mail duplicado", False),
+    ("Cadastro com e-mail duplicado", False),*
 ]
 
 for nome, resultado in testes:
-    print(verificar_status(nome, resultado))
+   * print(verificar_status(nome, resultado))*
 
 
 
