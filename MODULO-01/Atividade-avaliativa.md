@@ -14,7 +14,7 @@ R = É o processo de verificar e validar se o software funciona conforme o esper
 
 
 
-##2  - Por que  testar é importante para  o negócio? 
+## 2  - Por que  testar é importante para  o negócio? 
 
 
 
