@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+  }
+
+  .login-box, .success-box {
+    background: #ffffff;
+    padding: 40px 35px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .login-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #1e3c72;
+  }
+
+  .input-group {
+    margin-bottom: 20px;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .input-group input:focus {
+    border-color: #2a5298;
+  }
+
+  .input-group input:disabled {
+    background: #f2f2f2;
+    cursor: not-allowed;
+  }
+
+  .login-btn, .logout-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .login-btn:hover, .logout-btn:hover {
+    opacity: 0.9;
+  }
+
+  .login-btn:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .extra-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 13px;
+  }
+
+  .extra-links a {
+    color: #2a5298;
+    text-decoration: none;
+  }
+
+  .extra-links a:hover {
+    text-decoration: underline;
+  }
+
+  .error-msg {
+    color: #d33;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: none;
+  }
+
+  .lock-msg {
+    color: #b8860b;
+    font-size: 13px;
+    margin-bottom: 15px;
+    text-align: center;
+    display: none;
+    font-weight: bold;
+  }
+
+  /* Página de sucesso */
+  .success-box {
+    text-align: center;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+  }
+
+  .top-bar button {
+    background: none;
+    border: 1px solid #2a5298;
+    color: #2a5298;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .top-bar button:hover {
+    background: #2a5298;
+    color: #fff;
+  }
+
+  .success-box h1 {
+    color: #1e3c72;
+    margin-bottom: 10px;
+  }
+
+  .success-box p {
+    color: #555;
+    font-size: 14px;
+  }
+
+  .hidden {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+  <!-- Tela de Login -->
+  <div class="login-box" id="loginBox">
+    <h2>Entrar</h2>
+    <p class="error-msg" id="errorMsg">Login ou senha incorretos.</p>
+    <p class="lock-msg" id="lockMsg"></p>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" placeholder="Digite o login" required>
+      </div>
+      <div class="input-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="login-btn" id="loginBtn">Entrar</button>
+      <div class="extra-links">
+        <a href="#">Esqueci a senha</a>
+        <a href="#">Criar conta</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Tela de Sucesso -->
+  <div class="success-box hidden" id="successBox">
+    <div class="top-bar">
+      <button id="logoutBtn">Sair</button>
+    </div>
+    <h1>Sucesso</h1>
+    <p>Você entrou com sucesso no sistema.</p>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const loginBox = document.getElementById('loginBox');
+    const successBox = document.getElementById('successBox');
+    const errorMsg = document.getElementById('errorMsg');
+    const lockMsg = document.getElementById('lockMsg');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const usuarioInput = document.getElementById('usuario');
+    const senhaInput = document.getElementById('senha');
+
+    const USUARIO_CORRETO = "adm123";
+    const SENHA_CORRETA = "12345678";
+    const MAX_TENTATIVAS = 3;
+    const TEMPO_BLOQUEIO_MS = 3 * 60 * 1000; // 3 minutos
+
+    let tentativasFalhas = 0;
+    let bloqueadoAte = null;
+    let countdownInterval = null;
+
+    function formatarTempo(ms) {
+      const totalSegundos = Math.ceil(ms / 1000);
+      const minutos = Math.floor(totalSegundos / 60);
+      const segundos = totalSegundos % 60;
+      return `${minutos}:${segundos.toString().padStart(2, '0')}`;
+    }
+
+    function iniciarBloqueio() {
+      bloqueadoAte = Date.now() + TEMPO_BLOQUEIO_MS;
+      loginBtn.disabled = true;
+      usuarioInput.disabled = true;
+      senhaInput.disabled = true;
+      errorMsg.style.display = 'none';
+      lockMsg.style.display = 'block';
+
+      atualizarContagem();
+      countdownInterval = setInterval(atualizarContagem, 1000);
+    }
+
+    function atualizarContagem() {
+      const restante = bloqueadoAte - Date.now();
+
+      if (restante <= 0) {
+        clearInterval(countdownInterval);
+        lockMsg.style.display = 'none';
+        loginBtn.disabled = false;
+        usuarioInput.disabled = false;
+        senhaInput.disabled = false;
+        tentativasFalhas = 0;
+        bloqueadoAte = null;
+      } else {
+        lockMsg.textContent = `Muitas tentativas. Tente novamente em ${formatarTempo(restante)}.`;
+      }
+    }
+
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if (bloqueadoAte && Date.now() < bloqueadoAte) {
+        return; // ainda bloqueado, ignora o envio
+      }
+
+      const usuario = usuarioInput.value;
+      const senha = senhaInput.value;
+
+      if (usuario === USUARIO_CORRETO && senha === SENHA_CORRETA) {
+        tentativasFalhas = 0;
+        errorMsg.style.display = 'none';
+        loginBox.classList.add('hidden');
+        successBox.classList.remove('hidden');
+      } else {
+        tentativasFalhas++;
+
+        if (tentativasFalhas >= MAX_TENTATIVAS) {
+          iniciarBloqueio();
+        } else {
+          errorMsg.textContent = `Login ou senha incorretos. Tentativa ${tentativasFalhas} de ${MAX_TENTATIVAS}.`;
+          errorMsg.style.display = 'block';
+        }
+      }
+    });
+
+    logoutBtn.addEventListener('click', function() {
+      successBox.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+      loginForm.reset();
+      tentativasFalhas = 0;
+    });
+  </script>
+
+</body>
+</html>
