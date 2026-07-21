@@ -1,1 +1,282 @@
 
+### &#x20;                       **Atividade Teste de Software**
+
+
+
+
+
+##### &#x20;                         Sistema de Gerenciamento de Pedidos (SGP)
+
+
+
+&#x20;                                                               ***Testes Unitários***
+
+
+
+
+
+
+
+***Teste unitário 1:*** <i>Calculo do Valor total do pedido</i>
+
+
+
+*Objetivo: Verificar se o sistema calcula corretamente o valor total do pedido.*
+
+
+
+*Cenário:*
+
+
+
+*Produto A: 2 unidades de R$ 50,00*
+
+*Produto B: 1 unidade de R$ 100,00*
+
+
+
+***Resultado esperado:***
+
+
+
+*O valor total do pedido deve ser R$ 200,00.*
+
+
+
+***Justificativa:***
+
+*Esse é um teste unitário porque verifica apenas a função responsável pelo cálculo do valor total, sem depender de banco de dados ou outros serviços.*
+
+
+
+*---------------------------------------------------------------------------------------------*
+
+
+
+***Teste Unitário 2:** Validação de pedido sem itens*
+
+
+
+***Objetivo:** Verificar se o sistema impede a criação de pedidos vazios.*
+
+
+
+***Cenário:***
+
+*Criar um pedido sem adicionar nenhum produto.*
+
+
+
+***Resultado esperado:***
+
+*O sistema deve informar que o pedido é inválido.*
+
+
+
+***Justificativa:***
+
+*É um teste unitário porque valida apenas uma regra de negócio do sistema.*
+
+
+
+*---------------------------------------------------------------------------------------*
+
+
+
+*T**este Unitário 3**: Pedido confirmado não pode ser alterado*
+
+
+
+***Objetivo:** Verificar se um pedido confirmado não permite alterações.*
+
+
+
+***Cenário:***
+
+*Confirmar um pedido e tentar remover um item.*
+
+
+
+***Resultado esperado:***
+
+*O sistema deve impedir a alteração do pedido.*
+
+
+
+***Justificativa:***
+
+*É um teste unitário porque verifica somente a regra que controla o estado do pedido.*
+
+
+
+*---------------------------------------------------------------------------------------------*
+
+
+
+&#x20;                                                                    ***Testes de Integração***
+
+
+
+
+
+***Testes de Integração 1:*** <i>Consulta de produtos</i>
+
+
+
+***Objetivo:*** <i>Verificar se o sistema consulta corretamente os produtos no banco de dados.</i>
+
+
+
+***Cenário:***
+
+*O usuário acessa a tela de produtos.*
+
+
+
+***Resultado esperado:***
+
+*O sistema deve buscar os produtos no banco de dados e exibi-los corretamente.*
+
+
+
+***Justificativa:***
+
+*Este é um teste de integração porque verifica a comunicação entre o sistema e o banco de dados de produtos.*
+
+
+
+*-------------------------------------------------------------------------------*
+
+
+
+***Teste de Integração 2:** Autenticação de usuários*
+
+
+
+***Objetivo:** Verificar se o sistema consegue autenticar um usuário utilizando o serviço de autenticação.*
+
+
+
+***Cenário:***
+
+*O usuário informa e-mail e senha válidos.*
+
+
+
+***Resultado esperado:***
+
+*O serviço de autenticação deve validar as credenciais e permitir o acesso ao sistema.*
+
+
+
+***Justificativa:***
+
+*É um teste de integração porque envolve a comunicação entre o sistema e o serviço de autenticação.*
+
+
+
+*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\**
+
+
+
+***Teste de Integração 3:** Envio do pedido*
+
+
+
+***Objetivo:*** <i>Verificar se o pedido é enviado corretamente ao serviço de pedidos.</i>
+
+
+
+***Cenário:***
+
+*O usuário finaliza um pedido.*
+
+
+
+***Resultado esperado:***
+
+*O sistema deve enviar os dados do pedido ao serviço de pedidos e receber a confirmação do registro.*
+
+
+
+***Justificativa:***
+
+*É um teste de integração porque verifica a comunicação entre o SGP e o serviço responsável pelo processamento dos pedidos.*
+
+
+
+*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*
+
+
+
+&#x20;                                                                ***Testes de Sistema***
+
+
+
+***1. Fluxo completo de realização de um pedido***
+
+***Justificativa:*** <i>Verifica o funcionamento completo do sistema, desde o login até a confirmação do pedido, simulando o uso real da aplicação.</i>
+
+
+
+***2. Cadastro e autenticação de usuários***
+
+***Justificativa:*** <i>Avalia se o processo completo de cadastro e login funciona corretamente para permitir o acesso ao sistema.</i>
+
+
+
+***3. Finalização de pedido por usuário autenticado***
+
+***Justificativa:*** <i>Verifica se um usuário autenticado consegue concluir um pedido seguindo todas as regras de negócio.</i>
+
+
+
+***4. Bloqueio da finalização de pedido para usuário não autenticado***
+
+***Justificativa:*** <i>Valida que o sistema impede a conclusão de pedidos quando o usuário não está autenticado, conforme o requisito especificado.</i>
+
+
+
+***5. Bloqueio de alteração após confirmação do pedido***
+
+***Justificativa:*** <i>Verifica se o sistema impede alterações em um pedido já confirmado, garantindo o cumprimento da regra de negócio.</i>
+
+
+
+*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\**
+
+&#x20;                                                                  
+
+&#x20;                                                                 ***Testes de Aceitação***
+
+
+
+
+
+***1. Realização de um pedido com sucesso***
+
+***Justificativa:*** <i>Valida que o usuário consegue realizar um pedido completo, conforme esperado pelo cliente.</i>
+
+
+
+***2. Pedido deve conter pelo menos um item***
+
+***Justificativa:*** <i>Confirma que o sistema atende ao requisito de não permitir pedidos vazios.</i>
+
+
+
+***3. Cálculo correto do valor total do pedido***
+
+***Justificativa:*** <i>Garante que o valor final apresentado ao usuário considera corretamente a quantidade e o preço dos produtos, conforme a regra de negócio.</i>
+
+
+
+***4. Usuários não autenticados não podem finalizar pedidos***
+
+***Justificativa:*** <i>Confirma que o sistema atende ao requisito de segurança, impedindo a finalização de pedidos por usuários não autenticados.</i>
+
+
+
+***5. Pedido confirmado não pode ser alterado***
+
+***Justificativa:*** <i>Verifica que, após a confirmação, o sistema impede alterações no pedido, conforme especificado nos requisitos.</i>
