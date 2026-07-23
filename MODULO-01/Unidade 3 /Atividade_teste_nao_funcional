@@ -1,1 +1,25 @@
+# Checklist de Testes Não Funcionais — PACO
 
+## Performance
+- Tempo de resposta nas buscas e agendamentos
+- Comportamento em horários de pico
+- Velocidade das notificações
+**Risco:** lentidão/indisponibilidade causa desistência e duplicidade de tentativas
+
+## Segurança
+- Proteção de dados pessoais/saúde (LGPD)
+- Autenticação obrigatória para agendar
+- Controle de acesso usuário x admin
+**Risco:** vazamento de dados sensíveis e acesso indevido a consultas de terceiros
+
+## Usabilidade
+- Clareza no fluxo de agendamento
+- Mensagens de erro compreensíveis
+- Facilidade de uso para todos os públicos (incl. idosos)
+**Risco:** usuário desiste ou não entende o sistema
+
+## Compatibilidade
+- Funciona em desktop, tablet e celular
+- Compatível com principais navegadores e SOs
+- Suporta múltiplos usuários simultâneos
+**Risco:** falhas em certos dispositivos e conflito de horários simultâneos
