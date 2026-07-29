@@ -1,0 +1,140 @@
+#Testes de Sistema e de Aceitação
+
+## Etapa 1 – Compreensão do Cenário
+
+**Cenário:** Um sistema bancário permite que usuários realizem login, acessem sua conta e visualizem seu saldo atual.
+
+**Funcionalidades envolvidas:**
+- Autenticação (login)
+- Acesso à conta do usuário
+- Visualização do saldo atual
+
+**Fluxo principal:**
+Usuário informa credenciais válidas → sistema autentica → usuário acessa a conta → visualiza o saldo atual.
+
+**Variações de fluxo:**
+- Credenciais inválidas (login não realizado)
+- Campo obrigatório vazio
+- Sessão expirada durante a consulta de saldo
+- Erro de comunicação ao carregar o saldo
+
+---
+
+## Etapa 2 – Testes de Sistema
+
+**Foco:** funcionamento técnico do sistema, integração entre telas, sem validar regras de negócio complexas.
+
+### Caso 1
+**ID:** SIS001  
+**Título:** Validar login com credenciais válidas (fluxo principal)  
+**Pré-condições:** Ter um usuário cadastrado no sistema.  
+**Passos:**
+- P1 - Informar usuário válido
+- P2 - Informar senha válida
+- P3 - Clicar no botão Entrar
+
+**Resultado esperado:** O sistema autentica o usuário e redireciona para a tela da conta.
+
+---
+
+### Caso 2
+**ID:** SIS002  
+**Título:** Validar exibição do saldo após login (fluxo principal)  
+**Pré-condições:** Usuário autenticado no sistema.  
+**Passos:**
+- P1 - Acessar a tela da conta
+- P2 - Aguardar carregamento da tela
+
+**Resultado esperado:** O sistema exibe corretamente o saldo atual da conta na tela.
+
+---
+
+### Caso 3
+**ID:** SIS003  
+**Título:** Validar login com senha incorreta (fluxo alternativo)  
+**Pré-condições:** Ter um usuário cadastrado no sistema.  
+**Passos:**
+- P1 - Informar usuário válido
+- P2 - Informar senha incorreta
+- P3 - Clicar no botão Entrar
+
+**Resultado esperado:** O sistema exibe mensagem de erro e não permite o acesso à conta.
+
+---
+
+### Caso 4
+**ID:** SIS004  
+**Título:** Validar comportamento ao expirar a sessão durante a consulta de saldo (fluxo alternativo)  
+**Pré-condições:** Usuário autenticado com sessão configurada para expirar em curto período.  
+**Passos:**
+- P1 - Acessar a tela da conta
+- P2 - Aguardar a expiração da sessão
+- P3 - Tentar atualizar a tela de saldo
+
+**Resultado esperado:** O sistema encerra a sessão e redireciona o usuário para a tela de login.
+
+---
+
+## Etapa 3 – Testes de Aceitação
+
+**Foco:** valor entregue ao usuário, expectativa do negócio, critérios claros de aceitação.
+
+### Caso 5
+**ID:** ACE001  
+**Título:** Usuário consegue acessar sua conta de forma rápida e segura (fluxo principal)  
+**Pré-condições:** Ter um usuário cadastrado no sistema.  
+**Passos:**
+- P1 - Informar usuário válido
+- P2 - Informar senha válida
+- P3 - Clicar no botão Entrar
+
+**Resultado esperado:** O usuário consegue entrar na sua conta em poucos segundos, sem etapas confusas, atendendo à expectativa de um acesso simples e confiável ao banco.
+
+---
+
+### Caso 6
+**ID:** ACE002  
+**Título:** Usuário consegue consultar seu saldo de forma clara e confiável (fluxo principal)  
+**Pré-condições:** Usuário autenticado no sistema.  
+**Passos:**
+- P1 - Acessar a tela da conta
+- P2 - Visualizar o saldo exibido
+
+**Resultado esperado:** O usuário visualiza o saldo de forma clara, correta e atualizada, entregando confiança de que a informação reflete a realidade da sua conta bancária.
+
+---
+
+### Caso 7
+**ID:** ACE003  
+**Título:** Usuário é impedido de acessar a conta com dados incorretos, protegendo sua segurança (fluxo alternativo)  
+**Pré-condições:** Ter um usuário cadastrado no sistema.  
+**Passos:**
+- P1 - Informar usuário válido
+- P2 - Informar senha incorreta
+- P3 - Clicar no botão Entrar
+
+**Resultado esperado:** O usuário recebe um aviso claro de que o acesso não foi permitido, reforçando a sensação de que sua conta está protegida contra tentativas indevidas.
+
+---
+
+### Caso 8
+**ID:** ACE004  
+**Título:** Usuário é informado adequadamente quando sua sessão expira, evitando exposição de dados (fluxo alternativo)  
+**Pré-condições:** Usuário autenticado com sessão configurada para expirar em curto período.  
+**Passos:**
+- P1 - Acessar a tela da conta
+- P2 - Aguardar a expiração da sessão
+- P3 - Tentar atualizar a tela de saldo
+
+**Resultado esperado:** O usuário é redirecionado ao login com um aviso claro, entendendo que precisa se autenticar novamente, sem gerar dúvidas ou frustração sobre o motivo.
+
+---
+
+## Etapa 4 – Justificativa e Classificação
+
+| Caso | Por que é teste de Sistema? | Por que é teste de Aceitação? |
+|------|------------------------------|-------------------------------|
+| **SIS001 / ACE001** | Verifica tecnicamente se a lógica de autenticação (comparação de usuário/senha no backend) funciona corretamente. Ponto de vista: desenvolvedor/QA técnico. Validação: funcional/técnica. | Verifica se o resultado entrega valor real ao usuário (acesso rápido e confiável). Ponto de vista: usuário final/negócio. Validação: experiência e expectativa de negócio. |
+| **SIS002 / ACE002** | Verifica se a integração entre a tela de login e a tela de conta está funcionando e se o dado do saldo é corretamente buscado e renderizado. Ponto de vista: técnico/QA. Validação: integração entre telas. | Verifica se a informação entregue (saldo) é compreensível, confiável e atende à necessidade real do cliente do banco. Ponto de vista: usuário/negócio. Validação: valor percebido. |
+| **SIS003 / ACE003** | Verifica o comportamento técnico do sistema diante de uma entrada inválida (tratamento de erro na camada de validação). Ponto de vista: QA técnico. Validação: funcional. | Verifica se o usuário se sente seguro e bem informado ao ser impedido de entrar, reforçando a confiança na segurança do banco. Ponto de vista: usuário/negócio. Validação: expectativa de segurança do cliente. |
+| **SIS004 / ACE004** | Verifica se o mecanismo técnico de expiração de sessão está implementado corretamente (timeout, redirecionamento). Ponto de vista: técnico/QA. Validação: funcionamento do sistema. | Verifica se o usuário entende e aceita bem o motivo de ser desconectado, sem gerar frustração, atendendo à expectativa de comunicação clara do negócio. Ponto de vista: usuário/negócio. Validação: aceitação da experiência entregue. |
