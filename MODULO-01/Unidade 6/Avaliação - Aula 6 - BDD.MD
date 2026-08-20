@@ -13,16 +13,16 @@
 
 ### Contexto
 
-\`\`\`gherkin
+```gherkin
 Dado que estou logado como administrador no sistema
 E estou na tela "Novo registro — Funcionários"
-\`\`\`
+```
 
 ---
 
 ## Cenário 1: Cadastrar funcionário com todos os campos preenchidos corretamente (caminho feliz)
 
-\`\`\`gherkin
+```gherkin
 Dado que preencho o campo "Nome completo" com "Mariana Souza Lima"
 E preencho o campo "Cargo" com "Recepcionista"
 E preencho o campo "Telefone" com "(81) 98765-4321"
@@ -32,13 +32,13 @@ Então o sistema deve validar todos os campos com sucesso
 E o funcionário deve ser salvo na base de dados
 E devo ser redirecionado para a listagem de funcionários
 E o novo funcionário "Mariana Souza Lima" deve aparecer na lista
-\`\`\`
+```
 
 ---
 
 ## Cenário 2: Tentar salvar registro com o campo "Nome completo" em branco (caminho alternativo)
 
-\`\`\`gherkin
+```gherkin
 Dado que deixo o campo "Nome completo" em branco
 E preencho o campo "Cargo" com "Recepcionista"
 E preencho o campo "Telefone" com "(81) 98765-4321"
@@ -49,7 +49,7 @@ Então o registro não deve ser salvo
 E devo visualizar uma mensagem de erro indicando que o campo "Nome completo" é obrigatório
 E devo permanecer na tela "Novo registro — Funcionários"
 E os demais campos preenchidos devem ser mantidos
-\`\`\`
+```
 
 ---
 
