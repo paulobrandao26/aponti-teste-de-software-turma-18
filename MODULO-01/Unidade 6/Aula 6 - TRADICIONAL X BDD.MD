@@ -1,6 +1,6 @@
-from pathlib import Path
 
-conteudo = """# Atividade Avaliativa — BDD x Tradicional
+
+"""# Atividade Avaliativa — BDD x Tradicional
 
 ## Funcionalidade: Cadastro de Agendamento
 
@@ -72,7 +72,3 @@ O BDD comunica melhor o comportamento, pois utiliza uma linguagem próxima à li
 
 O BDD seria mais fácil de manter, pois os cenários são organizados de forma clara e podem ser alterados conforme as regras do sistema mudam.
 """
-
-caminho = Path("/mnt/data/atividade_agendamento_bdd_tradicional.md")
-caminho.write_text(conteudo, encoding="utf-8")
-print(f"Arquivo criado: {caminho}")
