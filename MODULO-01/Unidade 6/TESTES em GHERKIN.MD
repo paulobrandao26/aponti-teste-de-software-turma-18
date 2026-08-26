@@ -1,6 +1,4 @@
-from pathlib import Path
-
-conteudo = """# Atividade Avaliativa — BDD com Gherkin
+# Atividade Avaliativa — BDD com Gherkin
 
 ## Funcionalidade: Cadastro de Funcionário
 
@@ -23,8 +21,3 @@ conteudo = """# Atividade Avaliativa — BDD com Gherkin
 **E** confirma o cadastro  
 **Então** o sistema deve exibir uma mensagem de erro informando que o e-mail já está em uso  
 **Mas** o cadastro não deve ser salvo no banco de dados
-"""
-
-caminho = Path("/mnt/data/atividade_bdd_cadastro_funcionario.md")
-caminho.write_text(conteudo, encoding="utf-8")
-print(f"Arquivo criado: {caminho}")
